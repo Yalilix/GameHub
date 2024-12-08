@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const isLargeScreen = useMediaQuery('(min-width:801px)');
-  const links = isLargeScreen
-    ? ['Home', 'Blanko', 'Slido', 'Tetro']
+  const navLinks = isLargeScreen
+    ? ['Home', 'Blanko', 'Slido', 'TwentyFourthyEight']
     : ['H', 'B', 'S', 'T'];
+
+  const links = ['', 'b', 's', '2048'];
 
   return (
     <>
@@ -22,10 +24,10 @@ export const Header = () => {
             height: '50px',
           }}
         />
-        <nav className='fixed right-0 top-6 mr-2 text-xl'>
-          {links.map((l, index) => (
+        <nav className="fixed right-0 top-6 mr-2 text-xl">
+          {navLinks.map((l, index) => (
             <>
-              <Link key={index} to={l !== 'Home' ? `/${l}` : '/'}>
+              <Link key={index} to={`/${links[index]}`}>
                 {l}
               </Link>
               {index !== 3 && ' | '}
