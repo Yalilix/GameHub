@@ -14,3 +14,7 @@ export const StyledFooter = styled.footer`
   width: 100vw;
   background-color: #999999;
 `;
+
+export const StyledColorDiv = styled.div`
+  background-color: ${({ $bgcolor }) => $bgcolor};
+`;
