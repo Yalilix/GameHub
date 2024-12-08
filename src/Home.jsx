@@ -1,5 +1,5 @@
 import DashBoard from './Dashboard';
-import Page from './Page';
+import Page from './components/Page';
 
 const Home = () => {
   return (

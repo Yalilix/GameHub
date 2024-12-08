@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import TwentyFourthyEight from './Games/TwentyFourthyEight';
+import TwentyFourthyEight from './games/2048/TwentyFourthyEight';
 import Home from './Home';
 
 const App = () => {
