@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Game.css';
 import FailModal from './FailModal';
+import Page from '../../components/Page';
 
 function TwentyFourthyEight() {
   const defaultBoard = [
@@ -209,26 +210,28 @@ function TwentyFourthyEight() {
 
   return (
     <>
-      {fail && <FailModal setFail={setFail} />}
-      <div onKeyDown={handleKeyPress} tabIndex={0}>
-        <div className="parent">
-          {board.map((col) => {
-            return (
-              <>
-                <div className="flex-col">
-                  {col.map((row) => {
-                    return (
-                      <>
-                        <div className="block">{row}</div>
-                      </>
-                    );
-                  })}
-                </div>
-              </>
-            );
-          })}
+      <Page>
+        {fail && <FailModal setFail={setFail} />}
+        <div onKeyDown={handleKeyPress} tabIndex={0}>
+          <div className="parent h-fit">
+            {board.map((col) => {
+              return (
+                <>
+                  <div className="flex-col">
+                    {col.map((row) => {
+                      return (
+                        <>
+                          <div className="block">{row}</div>
+                        </>
+                      );
+                    })}
+                  </div>
+                </>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </Page>
     </>
   );
 }

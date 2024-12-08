@@ -11,14 +11,12 @@
 }
 
 .parent {
-  height: 97vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   user-select: none;
 }
-
 
 .parent > div {
   display: flex;

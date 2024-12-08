@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import './style.css';
+import { Button } from '@mui/material';
+import Page from '../../components/Page';
 
 const TicTacToe = () => {
   const defaultBoard = [
@@ -113,29 +116,35 @@ const TicTacToe = () => {
 
   return (
     <>
-      <div>
-        {board.map((row, y) => {
-          return (
-            <>
-              <div className='row'>
-                {row.map((value, x) => {
-                  return (
-                    <>
-                      <button
-                        className={setColour(x, y)}
-                        onClick={() => handleTurn(x, y)}
-                      >
-                        {value}
-                      </button>
-                    </>
-                  );
-                })}
-              </div>
-            </>
-          );
-        })}
-      </div>
-      {win && <div>{`Win player: ${turn === 'X' ? 'O' : 'X'}`}</div>}
+      <Page>
+        <div className=" flex justify-center items-center h-fit text-black flex-col rounded-md">
+          {board.map((row, y) => {
+            return (
+              <>
+                <div className="row rounded-md">
+                  {row.map((value, x) => {
+                    return (
+                      <>
+                        <button
+                          className={`${setColour(
+                            x,
+                            y
+                          )} border border-black w-40 h-32 rounded-xl`}
+                          onClick={() => handleTurn(x, y)}
+                        >
+                          {value}
+                        </button>
+                      </>
+                    );
+                  })}
+                </div>
+              </>
+            );
+          })}
+          {win && <div>{`Win player: ${turn === 'X' ? 'O' : 'X'}`}</div>}
+          <Button sx={{ paddingTop: '10px', height: '50px' }}>reset</Button>
+        </div>
+      </Page>
     </>
   );
 };
