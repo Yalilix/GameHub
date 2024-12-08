@@ -6,6 +6,9 @@ export default {
       fontSize: {
         'custom-2rem': '2rem',
       },
+      backgroundColor: {
+        teal: '#81b29a',
+      },
     },
   },
   plugins: [],

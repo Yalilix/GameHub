@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
+import Page from '../components/Page';
 
 const DashBoard = () => {
   const [winCount, setWinCount] = useState(
@@ -22,17 +23,22 @@ const DashBoard = () => {
 
   return (
     <>
-      <div className='flex flex-col justify-center items-center'>
-        <span className='text-red-500 text-custom-2em'>
-          Please choose an option from the navbar.
-        </span>
-        <div>
-          <span className='text-xl'>Games won: {winCount}</span>
-          <Button sx={{ color: 'black' }} onClick={() => setInitialState(true)}>
-            (reset)
-          </Button>
+      <Page>
+        <div className="flex flex-col justify-center items-center">
+          <span className="text-red-500 text-custom-2em">
+            Please choose an option from the navbar.
+          </span>
+          <div>
+            <span className="text-xl">Games won: {winCount}</span>
+            <Button
+              sx={{ color: 'black' }}
+              onClick={() => setInitialState(true)}
+            >
+              (reset)
+            </Button>
+          </div>
         </div>
-      </div>
+      </Page>
     </>
   );
 };

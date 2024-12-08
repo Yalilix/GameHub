@@ -1,16 +1,16 @@
 import { useMediaQuery } from '@mui/material';
 import { StyledHeader } from '../styles';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const isLargeScreen = useMediaQuery('(min-width:801px)');
   const navLinks = isLargeScreen
-    ? ['Home', 'Blanko', 'TicTacToe', 'TwentyFourthyEight (2048)']
-    : ['H', 'B', 'S', '2048'];
+    ? ['Dashboard', 'Blanko', 'TicTacToe', '2048']
+    : ['D', 'B', 'S', '2048'];
 
-  const links = ['', 'blanko', 'tictactoe', '2048'];
-
+  const links = ['Dashboard', 'blanko', 'tictactoe', '2048'];
+  const navigate = useNavigate();
   return (
     <>
       <StyledHeader>
@@ -24,7 +24,13 @@ export const Header = () => {
             height: '50px',
           }}
         />
-        <nav className='fixed right-0 top-6 mr-2 text-xl'>
+        <button
+          className="text-2xl font-semibold h-20 fixed left-40 md:left-64 lg:left-1/2"
+          onClick={() => navigate('/')}
+        >
+          Back Home
+        </button>
+        <nav className="fixed right-0 top-6 mr-2 text-xl">
           {navLinks.map((l, index) => (
             <>
               <Link key={index} to={`/${links[index]}`}>
