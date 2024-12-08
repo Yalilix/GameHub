@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
   const isLargeScreen = useMediaQuery('(min-width:801px)');
   const navLinks = isLargeScreen
-    ? ['Home', 'Blanko', 'Slido', 'TwentyFourthyEight (2048)']
+    ? ['Home', 'Blanko', 'TicTacToe', 'TwentyFourthyEight (2048)']
     : ['H', 'B', 'S', '2048'];
 
-  const links = ['', 'blanko', 's', '2048'];
+  const links = ['', 'blanko', 'tictactoe', '2048'];
 
   return (
     <>
