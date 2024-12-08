@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
   const isLargeScreen = useMediaQuery('(min-width:801px)');
   const navLinks = isLargeScreen
-    ? ['Home', 'Blanko', 'Slido', 'TwentyFourthyEight']
-    : ['H', 'B', 'S', 'T'];
+    ? ['Home', 'Blanko', 'Slido', 'TwentyFourthyEight (2048)']
+    : ['H', 'B', 'S', '2048'];
 
-  const links = ['', 'b', 's', '2048'];
+  const links = ['', 'blanko', 's', '2048'];
 
   return (
     <>
@@ -24,7 +24,7 @@ export const Header = () => {
             height: '50px',
           }}
         />
-        <nav className="fixed right-0 top-6 mr-2 text-xl">
+        <nav className='fixed right-0 top-6 mr-2 text-xl'>
           {navLinks.map((l, index) => (
             <>
               <Link key={index} to={`/${links[index]}`}>
