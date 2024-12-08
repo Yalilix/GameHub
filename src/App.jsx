@@ -1,12 +1,18 @@
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TwentyFourthyEight from './Games/TwentyFourthyEight';
+import Home from './Home';
 
-function App() {
+const App = () => {
   return (
     <>
-      <TwentyFourthyEight />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/2048' element={<TwentyFourthyEight />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
-}
+};
 
 export default App;
