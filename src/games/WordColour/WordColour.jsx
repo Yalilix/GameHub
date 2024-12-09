@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Page from '../../components/Page';
-import { StyledColorDiv } from '../styles';
+import { StyledColorDiv } from '../../styles';
 
 const WordColour = () => {
   const [randColor, setRandColor] = useState('');
@@ -63,10 +63,14 @@ const WordColour = () => {
   return (
     <>
       <Page>
-        <div className='bg-wc1 h-1/2 w-screen flex justify-center items-center text-custom-2rem'>
-          {randColor && <span>{randColor}</span>}
+        <div className="bg-wc1 h-1/2 w-screen flex justify-center items-center text-custom-2rem">
+          {randColor ? (
+            <span>{randColor}</span>
+          ) : (
+            <span className="">Loading...</span>
+          )}
         </div>
-        <div className='bg-wc2 h-1/2 w-screen flex flex-wrap'>
+        <div className="bg-wc2 h-1/2 w-screen flex flex-wrap">
           {colors.map((e, index) => (
             <>
               <StyledColorDiv
