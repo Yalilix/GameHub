@@ -1,13 +1,81 @@
 .block {
-  height: 130px;
-  width: 130px;
-  border: 1px solid black;
+  height: 8rem;
+  width: 8rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px 1px;
-  font-size: 3em;
+  font-size: 2em;
+  color: white;
+  transition: transform 0.2s ease-in-out;
+  margin: 0.1em;
+  font-weight: 500;
+}
+
+.block[data-value=""] {
+  background-color: #BDAC97;
+  color: #776e65;
+}
+
+.block[data-value="2"] {
+  background-color: #eee4da;
+  color: #776e65;
+}
+
+.block[data-value="4"] {
+  background-color: #ecd2a0;
+  color: #776e65;
+}
+
+.block[data-value="8"] {
+  background-color: #f2b179;
+}
+
+.block[data-value="16"] {
+  background-color: #f59563;
+}
+
+.block[data-value="32"] {
+  background-color: #f67c5f;
+}
+
+.block[data-value="64"] {
+  background-color: #f65e3b;
+}
+
+.block[data-value="128"] {
+  background-color: #edcf72;
+}
+
+.block[data-value="256"] {
+  background-color: #edcc61;
+}
+
+.block[data-value="512"] {
+  background-color: #edc850;
+}
+
+.block[data-value="1024"] {
+  background-color: #edc53f;
+  font-size: 1.5em;
+}
+
+.block[data-value="2048"] {
+  background-color: #edc22e;
+  font-size: 1.5em;
+}
+
+@media screen and (max-width:600px) {
+  .block {
+    font-size: 1.3em;
+    height: 7rem;
+    width: 5.5rem;
+    font-weight: semi-bold;
+  }
+
+  .block[data-value="1024"] .block[data-value="2048"] {
+    font-size: 1em;
+  }
 }
 
 .parent {
@@ -16,9 +84,12 @@
   justify-content: center;
   align-items: center;
   user-select: none;
+  background-color: #9C8B7C;
+  padding: 0.8rem;
+  border-radius: 20px;
 }
 
-.parent > div {
+.parent>div {
   display: flex;
   flex-direction: column;
 }

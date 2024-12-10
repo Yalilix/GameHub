@@ -14,6 +14,59 @@ function TwentyFourthyEight() {
   const [board, setBoard] = useState(defaultBoard);
   const [fail, setFail] = useState(false);
   let moveAgain = false;
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    setTouchStart({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchMove = (e) => {
+    if (!touchStart) return;
+    const touch = e.touches[0];
+    setTouchEnd({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const dx = touchEnd.x - touchStart.x;
+    const dy = touchEnd.y - touchStart.y;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 0) {
+        right();
+        while (moveAgain) {
+          moveAgain = false;
+          right();
+        }
+      } else {
+        left();
+        while (moveAgain) {
+          moveAgain = false;
+          left();
+        }
+      }
+    } else {
+      if (dy > 0) {
+        down();
+        while (moveAgain) {
+          moveAgain = false;
+          down();
+        }
+      } else {
+        up();
+        while (moveAgain) {
+          moveAgain = false;
+          up();
+        }
+      }
+    }
+
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
 
   const up = () => {
     const newBoard = [...board];
@@ -212,8 +265,14 @@ function TwentyFourthyEight() {
     <>
       <Page>
         {fail && <FailModal setFail={setFail} />}
-        <div onKeyDown={handleKeyPress} tabIndex={0}>
-          <div className="parent h-fit">
+        <div
+          onKeyDown={handleKeyPress}
+          onTouchMove={handleTouchMove}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          tabIndex={0}
+        >
+          <div className="parent h-fit ">
             {board.map((col) => {
               return (
                 <>
@@ -221,7 +280,9 @@ function TwentyFourthyEight() {
                     {col.map((row) => {
                       return (
                         <>
-                          <div className="block">{row}</div>
+                          <div className="block" data-value={row}>
+                            {row}
+                          </div>
                         </>
                       );
                     })}

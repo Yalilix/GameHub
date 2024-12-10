@@ -8,6 +8,7 @@ export default {
       },
       backgroundColor: {
         teal: '#81b29a',
+        darkBlue: '#264653',
         wc1: '#999',
         wc2: '#666',
       },

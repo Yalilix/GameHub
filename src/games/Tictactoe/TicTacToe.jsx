@@ -142,7 +142,12 @@ const TicTacToe = () => {
             );
           })}
           {win && <div>{`Win player: ${turn === 'X' ? 'O' : 'X'}`}</div>}
-          <Button sx={{ paddingTop: '10px', height: '50px' }}>reset</Button>
+          <Button
+            sx={{ paddingTop: '10px', height: '50px' }}
+            onClick={() => window.location.reload()}
+          >
+            reset
+          </Button>
         </div>
       </Page>
     </>
