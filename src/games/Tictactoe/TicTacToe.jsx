@@ -117,11 +117,11 @@ const TicTacToe = () => {
   return (
     <>
       <Page>
-        <div className=" flex justify-center items-center h-fit text-black flex-col rounded-md relative">
+        <div className=" flex justify-center items-center text-black flex-col rounded-md relative">
           <div className="absolute -top-20">
             {win && <div>{`Win player: ${turn === 'X' ? 'O' : 'X'}`}</div>}
           </div>
-          <div className="bg-slate-500 p-4 rounded-2xl">
+          <div className="bg-slate-500 md:p-4 sm:p-2 p-1 rounded-2xl">
             {board.map((row, y) => {
               return (
                 <>
@@ -133,9 +133,8 @@ const TicTacToe = () => {
                             className={`${setColour(
                               x,
                               y
-                            )} w-40 h-32 rounded-xl m-2 shadow-md`}
+                            )} md:w-40 md:h-32 sm:w-32 sm:h-24 w-14 h-16 rounded-xl md:m-2 m-1 shadow-md md:text-7xl sm:text-5xl`}
                             onClick={() => handleTurn(x, y)}
-                            id="tile"
                           >
                             {value}
                           </button>
