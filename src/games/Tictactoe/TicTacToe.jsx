@@ -135,6 +135,7 @@ const TicTacToe = () => {
                               y
                             )} w-40 h-32 rounded-xl m-2 shadow-md`}
                             onClick={() => handleTurn(x, y)}
+                            id="tile"
                           >
                             {value}
                           </button>

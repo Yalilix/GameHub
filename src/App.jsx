@@ -5,6 +5,7 @@ import Blanko from './games/Blanko/Blanko';
 import TicTacToe from './games/Tictactoe/TicTacToe';
 import DashBoard from './CommonPages/Dashboard';
 import WordColour from './games/WordColour/WordColour';
+import { Sudoku } from './games/Sudoku/Sudoku';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/blanko" element={<Blanko />} />
           <Route path="/tictactoe" element={<TicTacToe />} />
           <Route path="/wordcolour" element={<WordColour />} />
+          <Route path="/sudoku" element={<Sudoku />} />
         </Routes>
       </HashRouter>
     </>
