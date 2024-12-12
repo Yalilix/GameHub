@@ -63,24 +63,26 @@ const WordColour = () => {
   return (
     <>
       <Page>
-        <div className="bg-wc1 h-1/2 w-screen flex justify-center items-center text-custom-2rem">
-          {randColor ? (
-            <span>{randColor}</span>
-          ) : (
-            <span className="">Loading...</span>
-          )}
-        </div>
-        <div className="bg-wc2 h-1/2 w-screen flex flex-wrap">
-          {colors.map((e, index) => (
-            <>
-              <StyledColorDiv
-                key={index}
-                className={`w-1/2`}
-                $bgcolor={e}
-                onClick={() => handleClick(e)}
-              ></StyledColorDiv>
-            </>
-          ))}
+        <div className="flex w-screen items-center">
+          <div className="bg-wc1 w-1/2 flex justify-center items-center text-custom-2rem md:h-96 sm:h-80 h-60">
+            {randColor ? (
+              <span>{randColor}</span>
+            ) : (
+              <span className="">Loading...</span>
+            )}
+          </div>
+          <div className="bg-wc2 w-1/2 flex flex-wrap md:h-96 sm:h-80 h-60">
+            {colors.map((e, index) => (
+              <>
+                <StyledColorDiv
+                  key={index}
+                  className={`w-1/2`}
+                  $bgcolor={e}
+                  onClick={() => handleClick(e)}
+                ></StyledColorDiv>
+              </>
+            ))}
+          </div>
         </div>
       </Page>
     </>

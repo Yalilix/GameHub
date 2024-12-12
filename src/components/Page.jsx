@@ -4,11 +4,11 @@ import { StyledFooter } from '../styles';
 const Page = ({ children }) => {
   return (
     <>
-      <div className="m-0 flex flex-col h-screen">
+      <div className="m-0 flex flex-col min-h-screen">
         <div>
           <Header />
         </div>
-        <main className=" flex-grow flex justify-center items-center text-custom-2rem h-full">
+        <main className=" flex-grow flex justify-center items-center text-custom-2rem">
           {children}
         </main>
         <StyledFooter />
