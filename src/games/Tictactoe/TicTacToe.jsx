@@ -111,40 +111,45 @@ const TicTacToe = () => {
         win = true;
       }
     });
-    return win ? 'green' : '';
+    return win ? 'green text-white' : 'bg-white';
   };
 
   return (
     <>
       <Page>
-        <div className=" flex justify-center items-center h-fit text-black flex-col rounded-md">
-          {board.map((row, y) => {
-            return (
-              <>
-                <div className="row rounded-md">
-                  {row.map((value, x) => {
-                    return (
-                      <>
-                        <button
-                          className={`${setColour(
-                            x,
-                            y
-                          )} border border-black w-40 h-32 rounded-xl`}
-                          onClick={() => handleTurn(x, y)}
-                        >
-                          {value}
-                        </button>
-                      </>
-                    );
-                  })}
-                </div>
-              </>
-            );
-          })}
-          {win && <div>{`Win player: ${turn === 'X' ? 'O' : 'X'}`}</div>}
+        <div className=" flex justify-center items-center h-fit text-black flex-col rounded-md relative">
+          <div className="absolute -top-20">
+            {win && <div>{`Win player: ${turn === 'X' ? 'O' : 'X'}`}</div>}
+          </div>
+          <div className="bg-slate-500 p-4 rounded-2xl">
+            {board.map((row, y) => {
+              return (
+                <>
+                  <div className="row rounded-md">
+                    {row.map((value, x) => {
+                      return (
+                        <>
+                          <button
+                            className={`${setColour(
+                              x,
+                              y
+                            )} w-40 h-32 rounded-xl m-2 shadow-md`}
+                            onClick={() => handleTurn(x, y)}
+                          >
+                            {value}
+                          </button>
+                        </>
+                      );
+                    })}
+                  </div>
+                </>
+              );
+            })}
+          </div>
           <Button
-            sx={{ paddingTop: '10px', height: '50px' }}
+            sx={{ paddingTop: '10px', height: '40px', marginTop: '20px' }}
             onClick={() => window.location.reload()}
+            variant="contained"
           >
             reset
           </Button>
