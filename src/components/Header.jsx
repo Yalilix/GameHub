@@ -15,7 +15,7 @@ export const Header = () => {
           }}
         />
         <button
-          className="text-2xl font-semibold mr-4 h-12  rounded-lg hover:bg-darkBlue hover:text-white duration-300"
+          className="text-2xl font-semibold mr-4 h-12 rounded-lg hover:bg-darkBlue hover:text-white duration-300"
           onClick={() => navigate('/')}
         >
           Main Menu

@@ -2,24 +2,52 @@ import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 import Input from '../../components/Input';
 import Page from '../../components/Page';
+import { generate } from 'random-words';
 
 const Blanko = () => {
   const [inputs, setInputs] = useState(['', '', '']); // State for inputs
   const [randStr, setRandStr] = useState(''); // Static random string
   const [randNums, setRandNums] = useState([]); // Static random indices
 
+  const getNumLetters = (number) => {
+    return Math.max(2, Math.floor(Math.random() * number));
+  };
+
   useEffect(() => {
     const generateRandStr = () => {
-      const strs = [
-        'the fat cats',
-        'larger frogs',
-        'banana cakes',
-        'unsw vs usyd',
-        'french toast',
-        'hawaii pizza',
-        'barack obama',
-      ];
-      return strs[Math.floor(Math.random() * strs.length)];
+      const firstStr = getNumLetters(13);
+
+      const strs = generate({
+        exactly: 1,
+        minLength: firstStr,
+        maxLength: firstStr,
+      });
+
+      let remainLetters = 11 - firstStr;
+
+      while (remainLetters > 0) {
+        let currentStr = 0;
+        while (true) {
+          currentStr = getNumLetters(remainLetters);
+          const remains = remainLetters - (currentStr + 1);
+          if (remains === 1) {
+            continue;
+          }
+          break;
+        }
+        const str = generate({
+          minLength: currentStr,
+          maxLength: currentStr,
+        });
+
+        if (!strs.includes(str)) {
+          strs.push(str);
+        }
+        remainLetters -= currentStr + 1;
+      }
+
+      console.log(strs);
+      return strs.length > 1 ? strs.join(' ') : strs[0];
     };
 
     const getRandNums = (str) => {
@@ -67,12 +95,12 @@ const Blanko = () => {
   return (
     <>
       <Page>
-        <div className='flex flex-col items-center'>
-          <div className='flex flex-row mb-4'>
+        <div className="flex flex-col items-center">
+          <div className="flex flex-row mb-4 flex-wrap justify-center">
             {Array.from(randStr).map((char, index) => (
               <div
                 key={index}
-                className='border border-black mr-2 w-14 h-16 text-center p-2'
+                className="border border-black w-10 md:w-14 md:h-16 text-center p-2 m-2"
               >
                 {randNums.includes(index) ? (
                   <Input index={x++} inputs={inputs} setInputs={setInputs} />
@@ -82,7 +110,13 @@ const Blanko = () => {
               </div>
             ))}
           </div>
-          <Button onClick={() => window.location.reload()}>Reset</Button>
+          <Button
+            variant="contained"
+            onClick={() => window.location.reload()}
+            sx={{ paddingTop: '10px', height: '50px' }}
+          >
+            Reset
+          </Button>
         </div>
       </Page>
     </>

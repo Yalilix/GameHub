@@ -68,8 +68,8 @@
 @media screen and (max-width:600px) {
   .block {
     font-size: 1.3em;
-    height: 7rem;
-    width: 5.5rem;
+    height: 4rem;
+    width: 4rem;
     font-weight: semi-bold;
   }
 

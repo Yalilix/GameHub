@@ -19,10 +19,10 @@ const Input = ({ index, inputs, setInputs }) => {
 
   return (
     <input
-      type='text'
+      type="text"
       value={input}
       maxLength={1}
-      className='w-full pl-2 border border-black'
+      className="w-full md:pl-2 border border-black text-md h-full"
       onChange={handleInput}
     />
   );

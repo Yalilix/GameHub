@@ -1,9 +1,9 @@
-const FailModal = ({ setFail }) => {
+const Modal = ({ setFail, text }) => {
   return (
     <>
       <div className="dark-bg">
         <div className="normal-bg">
-          <span>Game Over</span>
+          <span>{text}</span>
           <button onClick={() => setFail(false)}>X</button>
         </div>
       </div>
@@ -11,4 +11,4 @@ const FailModal = ({ setFail }) => {
   );
 };
 
-export default FailModal;
+export default Modal;

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Game.css';
-import FailModal from './FailModal';
 import Page from '../../components/Page';
+import Modal from '../../components/Modal';
 
 function TwentyFourthyEight() {
   const defaultBoard = [
@@ -16,6 +16,7 @@ function TwentyFourthyEight() {
   let moveAgain = false;
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [win, setWin] = useState(false);
 
   const handleTouchStart = (e) => {
     const touch = e.touches[0];
@@ -261,18 +262,39 @@ function TwentyFourthyEight() {
     return oldBoard;
   };
 
+  const gameRef = useRef(null);
+
+  useEffect(() => {
+    // Automatically focus the div on mount
+    if (gameRef.current) {
+      gameRef.current.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    board.forEach((col) => {
+      col.forEach((row) => {
+        if (row === 2048) {
+          setWin(true);
+        }
+      });
+    });
+  }, [board]);
+
   return (
     <>
       <Page>
-        {fail && <FailModal setFail={setFail} />}
+        {fail && <Modal setFail={setFail} text={'Game Over'} />}
+        {win && <Modal setFail={setWin} text={'Game Won'} />}
         <div
+          ref={gameRef}
           onKeyDown={handleKeyPress}
           onTouchMove={handleTouchMove}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           tabIndex={0}
         >
-          <div className="parent h-fit ">
+          <div className="parent">
             {board.map((col) => {
               return (
                 <>

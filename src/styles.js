@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
   height: 80px;
   width: 100vw;
-  position: fixed;
   background-color: #eeeeee;
   display: flex;
   justify-content: space-between;
