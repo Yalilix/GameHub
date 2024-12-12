@@ -4,7 +4,7 @@ import { StyledFooter } from '../styles';
 const Page = ({ children }) => {
   return (
     <>
-      <div className="m-0 flex flex-col min-h-screen">
+      <div className="m-0 flex flex-col h-screen">
         <div>
           <Header />
         </div>
