@@ -16,4 +16,5 @@ export const StyledFooter = styled.footer`
 
 export const StyledColorDiv = styled.div`
   background-color: ${({ $bgcolor }) => $bgcolor};
+  cursor: pointer;
 `;

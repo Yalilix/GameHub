@@ -1,0 +1,20 @@
+.board {
+  display: grid;
+  width: 100%;
+}
+
+.board[data-size='4'] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.board[data-size='9'] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.board[data-size='16'] {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.board[data-size='25'] {
+  grid-template-columns: repeat(5, 1fr);
+}
