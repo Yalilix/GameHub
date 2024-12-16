@@ -22,7 +22,7 @@ const Input = ({ index, inputs, setInputs }) => {
       type="text"
       value={input}
       maxLength={1}
-      className="w-full md:pl-2 border border-black text-md h-full"
+      className="w-full md:pl-2 border border-black md:text-md mb-2 h-full"
       onChange={handleInput}
     />
   );

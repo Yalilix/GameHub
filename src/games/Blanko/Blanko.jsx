@@ -46,7 +46,6 @@ const Blanko = () => {
         remainLetters -= currentStr + 1;
       }
 
-      console.log(strs);
       return strs.length > 1 ? strs.join(' ') : strs[0];
     };
 
@@ -100,7 +99,7 @@ const Blanko = () => {
             {Array.from(randStr).map((char, index) => (
               <div
                 key={index}
-                className="border border-black w-10 md:w-14 md:h-16 text-center p-2 m-2"
+                className="border border-black w-10 md:w-14 md:h-16 p-2 m-2"
               >
                 {randNums.includes(index) ? (
                   <Input index={x++} inputs={inputs} setInputs={setInputs} />
