@@ -28,7 +28,6 @@ export const Sudoku = () => {
     const curBoard = [[], [], [], [], [], [], [], [], []];
     const curBoardBg = [[], [], [], [], [], [], [], [], []];
     const curSol = [[], [], [], [], [], [], [], [], []];
-    console.log(difficulty);
     const sudoku = getSudoku(difficulty.toLowerCase());
 
     sudoku.puzzle.split('').forEach((e, index) => {
@@ -45,6 +44,8 @@ export const Sudoku = () => {
     setBoard(curBoard);
     setOrginalBoard(curBoard);
     setBoardBg(curBoardBg);
+    setCurCell([-1, -1]);
+    console.log(curBoardBg);
     setSol(curSol);
   }, [difficulty]);
 
