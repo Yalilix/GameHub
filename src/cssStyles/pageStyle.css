@@ -1,0 +1,9 @@
+.full-view {
+  min-height: 100vh;
+}
+
+@supports (min-height: 100dvh) {
+  .full-view {
+    min-height: 100dvh;
+  }
+}
