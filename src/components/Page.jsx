@@ -1,6 +1,5 @@
 import Header from './Header';
 import { StyledFooter } from '../styles';
-import '../cssStyles/pageStyles.css';
 
 const Page = ({ children }) => {
   return (
