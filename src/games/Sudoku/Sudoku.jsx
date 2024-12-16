@@ -3,7 +3,8 @@ import { getSudoku } from 'sudoku-gen';
 import { useEffect, useState } from 'react';
 import { NumPicker } from './NumPicker';
 import { Tile } from './Tile';
-import { highlightSameNumber } from './helper';
+import { highlightSameNumber, resetHighlight } from './helper';
+import { DifficultyPicker } from '../../components/DifficultyPicker';
 
 export const Sudoku = () => {
   const [board, setBoard] = useState([[], [], [], [], [], [], [], [], []]);
@@ -21,13 +22,14 @@ export const Sudoku = () => {
   ]);
   const [curCell, setCurCell] = useState([-1, -1]);
   const [sol, setSol] = useState([[], [], [], [], [], [], [], [], []]);
+  const [difficulty, setDifficulty] = useState('easy');
 
   useEffect(() => {
     const curBoard = [[], [], [], [], [], [], [], [], []];
     const curBoardBg = [[], [], [], [], [], [], [], [], []];
     const curSol = [[], [], [], [], [], [], [], [], []];
-
-    const sudoku = getSudoku('easy');
+    console.log(difficulty);
+    const sudoku = getSudoku(difficulty.toLowerCase());
 
     sudoku.puzzle.split('').forEach((e, index) => {
       const curBoardLayer = Math.floor(index / 9);
@@ -44,13 +46,14 @@ export const Sudoku = () => {
     setOrginalBoard(curBoard);
     setBoardBg(curBoardBg);
     setSol(curSol);
-  }, []);
+  }, [difficulty]);
 
   useEffect(() => {
     const curBoard = board.toString().replace(/,/g, '');
     const curSol = sol.toString().replace(/,/g, '');
     if (curCell[0] !== -1 || curCell[1] !== -1) {
       const newBoardBg = structuredClone(boardBg);
+      resetHighlight(curCell[0], curCell[1], newBoardBg, curCell);
       for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
           highlightSameNumber(i, j, board, newBoardBg, curCell);
@@ -67,6 +70,7 @@ export const Sudoku = () => {
     <>
       <Page>
         <div className="w-full md:max-w-xl sm:max-w-[416px] max-w-[287px] flex flex-col">
+          <DifficultyPicker setFn={setDifficulty} />
           <div className="flex">
             {board.map((row, x) => {
               return (

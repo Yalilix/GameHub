@@ -27,6 +27,36 @@ const checkRedTextPresence = (x, y, newBoardBg, board) => {
   return false;
 };
 
+const getOldBg = (x, y, newBoardBg) => {
+  if (newBoardBg[x][y].includes('bg-blue-100')) {
+    return 'bg-blue-100';
+  } else if (newBoardBg[x][y].includes('bg-blue-300')) {
+    return 'bg-blue-300';
+  } else if (newBoardBg[x][y].includes('bg-red-100')) {
+    return 'bg-red-100';
+  } else if (newBoardBg[x][y].includes('bg-white')) {
+    return 'bg-white';
+  }
+};
+
+export const resetHighlight = (x, y, newBoardBg) => {
+  for (let i = 0; i < 9; i++) {
+    if (x === i || y === i) continue;
+    const oldBgX = getOldBg(x, i, newBoardBg);
+    const oldBgY = getOldBg(i, y, newBoardBg);
+
+    newBoardBg[x][i] = newBoardBg[x][i].replace(oldBgX, 'bg-blue-100');
+    newBoardBg[i][y] = newBoardBg[i][y].replace(oldBgY, 'bg-blue-100');
+  }
+  for (let i = Math.floor(x / 3) * 3; i < Math.floor(x / 3) * 3 + 3; i++) {
+    for (let j = Math.floor(y / 3) * 3; j < Math.floor(y / 3) * 3 + 3; j++) {
+      if (x === i && y === j) continue;
+      const oldBg = getOldBg(i, j, newBoardBg);
+      newBoardBg[i][j] = newBoardBg[i][j].replace(oldBg, 'bg-blue-100');
+    }
+  }
+};
+
 export const highlightSameNumber = (i, j, board, newBoardBg, curCell) => {
   if (i !== curCell[0] && j !== curCell[1])
     removeHighlightSameNumber(i, j, newBoardBg);
