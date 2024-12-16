@@ -3,11 +3,23 @@ import { getSudoku } from 'sudoku-gen';
 import { useEffect, useState } from 'react';
 import { NumPicker } from './NumPicker';
 import { Tile } from './Tile';
+import { highlightSameNumber } from './helper';
 
 export const Sudoku = () => {
   const [board, setBoard] = useState([[], [], [], [], [], [], [], [], []]);
   const [boardBg, setBoardBg] = useState([[], [], [], [], [], [], [], [], []]);
-  const [curCell, setCurCell] = useState([0, 0]);
+  const [orginalBoard, setOrginalBoard] = useState([
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+  ]);
+  const [curCell, setCurCell] = useState([-1, -1]);
   const [sol, setSol] = useState([[], [], [], [], [], [], [], [], []]);
 
   useEffect(() => {
@@ -29,6 +41,7 @@ export const Sudoku = () => {
     });
 
     setBoard(curBoard);
+    setOrginalBoard(curBoard);
     setBoardBg(curBoardBg);
     setSol(curSol);
   }, []);
@@ -36,6 +49,15 @@ export const Sudoku = () => {
   useEffect(() => {
     const curBoard = board.toString().replace(/,/g, '');
     const curSol = sol.toString().replace(/,/g, '');
+    if (curCell[0] !== -1 || curCell[1] !== -1) {
+      const newBoardBg = structuredClone(boardBg);
+      for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+          highlightSameNumber(i, j, board, newBoardBg, curCell);
+        }
+      }
+      setBoardBg(newBoardBg);
+    }
     if (curBoard === curSol && curBoard !== '') {
       setTimeout(() => alert('You win!'), 0);
     }
@@ -59,6 +81,7 @@ export const Sudoku = () => {
                         setCurCell={setCurCell}
                         boardBg={boardBg}
                         setBoardBg={setBoardBg}
+                        board={board}
                       />
                     );
                   })}
@@ -73,6 +96,7 @@ export const Sudoku = () => {
             sol={sol}
             boardBg={boardBg}
             setBoardBg={setBoardBg}
+            orginalBoard={orginalBoard}
           />
         </div>
       </Page>

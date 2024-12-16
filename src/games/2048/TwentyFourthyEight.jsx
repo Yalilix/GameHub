@@ -64,7 +64,7 @@ function TwentyFourthyEight() {
         }
       }
     }
-
+    addNewBlock();
     setTouchStart(null);
     setTouchEnd(null);
   };

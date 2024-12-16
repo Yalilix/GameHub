@@ -5,14 +5,14 @@ export const NumPicker = ({
   sol,
   boardBg,
   setBoardBg,
+  orginalBoard,
 }) => {
   const addNumber = (number) => {
+    if (orginalBoard[curCell[0]][curCell[1]] !== '-') return;
     const newBoard = structuredClone(board);
-    newBoard[curCell[0]][curCell[1]] = number;
+    newBoard[curCell[0]][curCell[1]] = number.toString();
     setBoard(newBoard);
     const newBoardBg = structuredClone(boardBg);
-
-    console.log(sol[curCell[0]][curCell[1]]);
 
     if (
       sol[curCell[0]][curCell[1]] !==

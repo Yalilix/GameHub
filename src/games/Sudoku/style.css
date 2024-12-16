@@ -3,19 +3,21 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
 }
 
 /* For mobile devices, calculate height minus the address bar space */
 @media (max-width: 767px) {
-  html,
-  body {
-    height: -webkit-fill-available; /* On iOS to account for the address bar */
-  }
 
   /* Allow body to fill the viewport correctly */
   .m-0 {
-    min-height: 100vh; /* For mobile, ensuring full height usage */
-    height: 100%;
+    min-height: 100vh;
+  }
+
+  @supports (min-height: 100dvh) {
+    .m-0 {
+      min-height: 100dvh;
+    }
   }
 }
