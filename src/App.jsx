@@ -6,6 +6,7 @@ import TicTacToe from './games/Tictactoe/TicTacToe';
 import DashBoard from './CommonPages/Dashboard';
 import WordColour from './games/WordColour/WordColour';
 import { Sudoku } from './games/Sudoku/Sudoku';
+import { Slido } from './games/Slido/Slido';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/tictactoe" element={<TicTacToe />} />
           <Route path="/wordcolour" element={<WordColour />} />
           <Route path="/sudoku" element={<Sudoku />} />
+          <Route path="/slido" element={<Slido />} />
         </Routes>
       </HashRouter>
     </>

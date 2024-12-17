@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './style.css';
-import { Button } from '@mui/material';
 import Page from '../../components/Page';
+import { ResetButton } from '../../components/ResetButton';
 
 const TicTacToe = () => {
   const defaultBoard = [
@@ -9,11 +9,19 @@ const TicTacToe = () => {
     ['', '', ''],
     ['', '', ''],
   ];
+
   const [board, setBoard] = useState(defaultBoard);
   const [turn, setTurn] = useState('X');
   const [winPlayer, setWinPlayer] = useState('');
   const [winTiles, setWinTiles] = useState([]);
   const [win, setWin] = useState(false);
+
+  useEffect(() => {
+    setTurn('X');
+    setWinPlayer('');
+    setWin(false);
+    setWinTiles([]);
+  }, [board]);
 
   const handleTurn = (x, y) => {
     if (board[y][x] === '' && !win) {
@@ -85,11 +93,6 @@ const TicTacToe = () => {
           [b[0], b[1]],
           [c[0], c[1]],
         ]);
-        console.log([
-          [a[0], a[1]],
-          [b[0], b[1]],
-          [c[0], c[1]],
-        ]);
       }
     }
   };
@@ -146,13 +149,7 @@ const TicTacToe = () => {
               );
             })}
           </div>
-          <Button
-            sx={{ paddingTop: '10px', height: '40px', marginTop: '20px' }}
-            onClick={() => window.location.reload()}
-            variant="contained"
-          >
-            reset
-          </Button>
+          <ResetButton setFn={() => setBoard(defaultBoard)} />
         </div>
       </Page>
     </>

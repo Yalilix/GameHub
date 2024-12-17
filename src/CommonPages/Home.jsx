@@ -1,7 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  const games = ['Blanko', 'Tic Tac Toe', '2048', 'Word Colour', 'Sudoku'];
+  const games = [
+    'Blanko',
+    'Tic Tac Toe',
+    '2048',
+    'Word Colour',
+    'Sudoku',
+    'Slido',
+  ];
   const navigate = useNavigate();
   const handleNavigate = (path) => {
     navigate(`/${path.toLowerCase().replaceAll(' ', '')}`);
