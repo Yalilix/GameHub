@@ -7,6 +7,7 @@ import DashBoard from './CommonPages/Dashboard';
 import WordColour from './games/WordColour/WordColour';
 import { Sudoku } from './games/Sudoku/Sudoku';
 import { Slido } from './games/Slido/Slido';
+import { Tetro } from './games/Tetro/Tetro';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/wordcolour" element={<WordColour />} />
           <Route path="/sudoku" element={<Sudoku />} />
           <Route path="/slido" element={<Slido />} />
+          <Route path="/tetro" element={<Tetro />} />
         </Routes>
       </HashRouter>
     </>

@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom';
+import IconCard from '../components/IconCard';
+import GameIcon from '../../public/game.svg';
 
 const Home = () => {
   const games = [
@@ -8,20 +9,27 @@ const Home = () => {
     'Word Colour',
     'Sudoku',
     'Slido',
+    'Tetro',
   ];
-  const navigate = useNavigate();
-  const handleNavigate = (path) => {
-    navigate(`/${path.toLowerCase().replaceAll(' ', '')}`);
+
+  const getImages = () => {
+    const importImages = import.meta.glob('../assets/*.png', { eager: true });
+    return Object.entries(importImages).map(([_, module]) => module.default);
   };
+  const images = getImages();
 
   return (
     <>
-      <div className="mt-20 md:mt-12 text-4xl md:text-7xl bg-transparent font-semibold flex justify-center fixed w-screen ">
-        GamesHub
-      </div>
-      <div className="flex justify-center items-center h-screen bg-teal">
-        <div className="flex  justify-center items-center flex-row text-black rounded-md gap-6 w-3/4 flex-wrap basis-1/2">
-          {games.map((path, y) => {
+      <div className="bg-deepNavy">
+        <div className="pt-4 pb-4 text-2xl md:text-4xl font-semibold flex justify-start text-white border-b border-gray-700">
+          <div className="flex gap-3 ml-4">
+            <img src={GameIcon} alt="Game Icon" className="md:h-10 h-8" />
+            <span>GamesHub</span>
+          </div>
+        </div>
+        <div className="flex justify-center items-center h-screen ">
+          <div className="flex justify-center items-center flex-row text-black rounded-md gap-6 w-3/4 flex-wrap">
+            {/* {games.map((path, y) => {
             return (
               <>
                 <div
@@ -37,7 +45,21 @@ const Home = () => {
                 </div>
               </>
             );
-          })}
+          })} */}
+            {images.map((image, y) => {
+              return (
+                <>
+                  <div key={y} className="row">
+                    <IconCard
+                      image={image}
+                      text={games[y]}
+                      path={games[y].toLowerCase()}
+                    />
+                  </div>
+                </>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

@@ -140,13 +140,13 @@ export const Slido = () => {
                           key={y}
                           src={column}
                           alt={`img-${x}`}
-                          className="h-[150px] w-[150px] border border-black"
+                          className="md:h-[150px] md:w-[150px] sm:h-32 sm:w-32 h-20 w-20 border border-black"
                           onClick={() => handleClick(x, y)}
                         />
                       ) : (
                         <div
                           key={y}
-                          className="h-[150px] w-[150px] border border-black"
+                          className="md:h-[150px] md:w-[150px] sm:h-32 sm:w-32 h-20 w-20 border border-black"
                           onClick={() => handleClick(x, y)}
                         ></div>
                       )}

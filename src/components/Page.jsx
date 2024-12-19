@@ -6,7 +6,7 @@ import '../cssStyles/pageStyle.css';
 const Page = ({ children }) => {
   return (
     <>
-      <div className="m-0 flex flex-col full-view">
+      <div className="m-0 flex flex-col full-view ">
         <div>
           <Header />
         </div>

@@ -11,6 +11,7 @@ export default {
         darkBlue: '#264653',
         wc1: '#999',
         wc2: '#666',
+        deepNavy: '#1a1a2e',
       },
     },
   },
