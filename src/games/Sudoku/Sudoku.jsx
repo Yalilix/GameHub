@@ -45,7 +45,6 @@ export const Sudoku = () => {
     setOrginalBoard(curBoard);
     setBoardBg(curBoardBg);
     setCurCell([-1, -1]);
-    console.log(curBoardBg);
     setSol(curSol);
   }, [difficulty]);
 
