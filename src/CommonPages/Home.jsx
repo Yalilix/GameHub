@@ -1,5 +1,6 @@
 import IconCard from '../components/IconCard';
 import GameIcon from '../../public/game.svg';
+import '../cssStyles/pageStyle.css';
 
 const Home = () => {
   const games = [
@@ -27,7 +28,7 @@ const Home = () => {
             <span>GamesHub</span>
           </div>
         </div>
-        <div className="flex justify-center items-start h-screen overflow-auto">
+        <div className="flex justify-center items-start view overflow-auto">
           <div className="flex justify-center text-black rounded-md gap-6 w-3/4 flex-wrap pt-8 pb-8 flex-grow mt-16">
             {images.map((image, y) => {
               return (

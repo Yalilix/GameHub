@@ -7,3 +7,13 @@
     min-height: 100dvh;
   }
 }
+
+.view {
+  height: 100vh;
+}
+
+@supports (height: 100dvh) {
+  .view {
+    height: 100dvh;
+  }
+}

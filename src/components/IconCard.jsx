@@ -7,7 +7,7 @@ export default function IconCard({ image, text, path }) {
   };
   return (
     <button
-      className="relative h-52 w-48 rounded-xl shadow-xl overflow-hidden text-white"
+      className="relative h-52 w-44 rounded-xl shadow-xl overflow-hidden text-white"
       onClick={() => handleNavigate(path)}
     >
       <img src={image} alt="" className="h-4/5 w-full object-cover" />
