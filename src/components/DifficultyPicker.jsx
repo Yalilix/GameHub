@@ -1,12 +1,12 @@
 export const DifficultyPicker = ({ setFn }) => {
   const levels = ['Easy', 'Medium', 'Hard', 'Expert'];
   return (
-    <div className="mb-4 flex justify-evenly rounded-lg md:h-12 sm:h-10 h-8">
+    <div className="mb-4 flex flex-wrap gap-4 rounded-lg md:h-14 sm:h-12 h-10 justify-center">
       {levels.map((e, index) => {
         return (
           <button
             key={index}
-            className=" bg-black text-white hover:bg-white hover:border hover:border-black hover:text-black w-1/5 font-semibold rounded-2xl gap-2 md:text-2xl sm:text-lg text-xs shadow-2xl"
+            className="flex-1 min-w-[5rem] bg-black text-white hover:bg-white hover:border hover:border-black hover:text-black font-semibold rounded-2xl md:text-xl sm:text-lg text-xs shadow-2xl"
             onClick={() => setFn(e)}
           >
             {e}

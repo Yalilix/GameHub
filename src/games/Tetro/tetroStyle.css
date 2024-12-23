@@ -1,4 +1,50 @@
 .parent-tetro {
-  margin: 20px;
-  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  /* Ensures rows stack vertically */
+  justify-content: center;
+  /* Centers the grid vertically */
+  align-items: center;
+  /* Centers the grid horizontally */
+  margin: 1em 0.7em;
+  /* Top, left/right, bottom margins */
+  width: calc(100vw - 40px);
+  /* Account for horizontal margins (20px + 20px + extra) */
+}
+
+.tetro-view {
+  height: calc(100vh - 250px);
+  /* Account for total vertical margin (20px + 100px) */
+}
+
+.color-0 {
+  background-color: #e87407;
+}
+
+.color-1 {
+  background-color: #1203dae3;
+}
+
+.color-2 {
+  background-color: #e90707;
+}
+
+.color-3 {
+  background-color: #e8e807;
+}
+
+.color-4 {
+  background-color: #e807e8;
+}
+
+.color-5 {
+  background-color: #07e8e8;
+}
+
+.color-6 {
+  background-color: #690fdf;
+}
+
+.color-finished {
+  background-color: #47e807;
 }

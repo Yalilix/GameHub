@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import Page from '../../components/Page';
 import { shuffleArray } from '../../helper';
 import { ResetButton } from '../../components/ResetButton';
+import Modal from '../../components/Modal';
 
 export const Slido = () => {
   const [board, setBoard] = useState([[], [], []]);
   const divRef = useRef(null);
   const [curCell, setCurCell] = useState({ x: 2, y: 2 });
-
+  const [gameWon, setGameWon] = useState(false);
   useEffect(() => {
     // Focus the div when the component is mounted
     if (divRef.current) {
@@ -119,8 +120,7 @@ export const Slido = () => {
     const game = getSolution();
     if (JSON.stringify(game) === JSON.stringify(board)) {
       setTimeout(() => {
-        alert('You win!');
-        setBoard(generateGame());
+        setGameWon(true);
       }, 0);
     }
   }, [board]);
@@ -159,6 +159,14 @@ export const Slido = () => {
           <ResetButton setFn={setBoard} generateGame={generateGame} />
         </div>
       </div>
+      {gameWon && (
+        <Modal
+          setFail={() => {
+            setGameWon(false);
+          }}
+          text={'Game Won'}
+        />
+      )}
     </Page>
   );
 };
