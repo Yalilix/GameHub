@@ -3,6 +3,8 @@ import Page from '../../components/Page';
 import './tetroStyle.css';
 import Modal from '../../components/Modal';
 import { DifficultyPicker } from '../../components/DifficultyPicker';
+import { ActionButton } from '../../components/ActionButton';
+import { useMediaQuery } from '@mui/material';
 
 let intervalObj = null;
 
@@ -13,6 +15,8 @@ export const Tetro = () => {
       Array.from({ length: 10 }, () => createCell())
     );
   };
+
+  const isMobile = useMediaQuery('(max-width:600px)');
 
   const [board, setBoard] = useState(getDefaultBoard());
   const [gameOver, setGameOver] = useState(false);
@@ -119,6 +123,7 @@ export const Tetro = () => {
       }
       return;
     }
+
     genereteRandomShape();
     let numFixedBlock = 0;
     intervalObj = setInterval(() => {
@@ -236,11 +241,24 @@ export const Tetro = () => {
 
   useEffect(() => {
     if (difficulty === null) {
+      // Clear the interval
       clearInterval(intervalObj);
       intervalObj = null;
-      setBoard(getDefaultBoard());
-      boardRef.current = getDefaultBoard();
+
+      // Reset the board
+      const defaultBoard = getDefaultBoard();
+      setBoard(defaultBoard);
+      boardRef.current = defaultBoard;
+
+      // Reset game state
       setRowsFilled(0);
+      // setGameOver(false);
+      setGameWin(false);
+      setGameEnd(false);
+
+      // Reset block references
+      curBlock.current = { fix: false, blocks: [] };
+      fixedBlockCountRef.current = 0;
     }
   }, [difficulty]);
 
@@ -250,24 +268,33 @@ export const Tetro = () => {
         <Modal setFail={null} text={'Select Difficulty'}>
           <DifficultyPicker setFn={setDifficulty} />
           <button
-            className="bg-red-500 text-white hover:bg-red-700 hover:border w-24 font-semibold rounded-2xl gap-2 md:text-2xl sm:text-lg text-xs shadow-2xl h-12"
+            className="bg-red-500 text-white hover:bg-red-700 hover:border w-24 font-semibold rounded-2xl gap-2 md:text-2xl sm:text-lg text-xs shadow-2xl h-10"
             onClick={() => setDifficulty('Easy')}
           >
             CLOSE
           </button>
         </Modal>
       )}
-      <div className="tetro-view flex flex-col items-center justify-around ml-6 pt-8 pl-2 pr-2 border border-black rounded-3xl">
-        <span className="font-semibold text-3xl text-center">
+      <div className="tetro-view flex flex-col items-center justify-around ml-6 pt-8 pl-1 pr-1 border border-black rounded-3xl w-1/3">
+        <span className="font-semibold sm:text-3xl text-2xl text-center">
           Get {difficulty === null ? '?' : getRules()} rows filled to win
         </span>
-        <span className="text-xl mt-12"> Rows filled: {rowsFilled}</span>
+        <span className="sm:text-xl text-base mt-12 text-center">
+          Rows filled: {rowsFilled}
+        </span>
         <button
           className="bg-black text-white hover:bg-white hover:border hover:border-black hover:text-black w-fit p-2 font-semibold rounded-2xl gap-2 md:text-2xl sm:text-lg text-xs shadow-2xl"
           onClick={() => setDifficulty(null)}
         >
           Set Difficulty
         </button>
+        {isMobile && (
+          <div className="flex justify-center flex-wrap gap-1">
+            <ActionButton onClick={moveLeft} text="Left" />
+            <ActionButton onClick={moveRight} text="Right" />
+            <ActionButton onClick={moveDown} text="Down" />
+          </div>
+        )}
       </div>
       <div
         className="tetro-view parent-tetro flex flex-col border border-black bg-deepNavy gap-0.5 p-1 rounded-xl"
