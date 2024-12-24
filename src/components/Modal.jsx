@@ -26,7 +26,7 @@ const Modal = ({ setFail, text, children }) => {
       }`}
     >
       <div
-        className={`bg-deepNavy text-white p-8 rounded-2xl transition-transform duration-1000 flex-col flex items-center gap-4 ${
+        className={`bg-deepNavy text-white p-8 rounded-2xl transition-transform duration-1000 flex-col flex items-center justify-center gap-4 ${
           visible ? 'scale-100' : 'scale-0'
         }`}
       >

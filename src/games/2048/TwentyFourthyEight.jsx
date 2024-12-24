@@ -295,21 +295,17 @@ function TwentyFourthyEight() {
           tabIndex={0}
         >
           <div className="parent">
-            {board.map((col) => {
+            {board.map((col, y) => {
               return (
-                <>
-                  <div className="flex-col">
-                    {col.map((row) => {
-                      return (
-                        <>
-                          <div className="block" data-value={row}>
-                            {row}
-                          </div>
-                        </>
-                      );
-                    })}
-                  </div>
-                </>
+                <div key={y} className="flex-col">
+                  {col.map((row, x) => {
+                    return (
+                      <div key={x} className="block" data-value={row}>
+                        {row}
+                      </div>
+                    );
+                  })}
+                </div>
               );
             })}
           </div>

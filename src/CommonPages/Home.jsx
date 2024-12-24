@@ -32,15 +32,13 @@ const Home = () => {
           <div className="flex justify-center text-black rounded-md gap-6 w-3/4 flex-wrap pt-8 pb-8 flex-grow mt-16">
             {images.map((image, y) => {
               return (
-                <>
-                  <div key={y} className="row">
-                    <IconCard
-                      image={image}
-                      text={games[y]}
-                      path={games[y].toLowerCase()}
-                    />
-                  </div>
-                </>
+                <div key={`key-${y}`} className="row">
+                  <IconCard
+                    image={image}
+                    text={games[y]}
+                    path={games[y].toLowerCase()}
+                  />
+                </div>
               );
             })}
           </div>

@@ -127,25 +127,22 @@ const TicTacToe = () => {
           <div className="bg-slate-500 md:p-4 sm:p-2 p-1 rounded-2xl">
             {board.map((row, y) => {
               return (
-                <>
-                  <div className="row rounded-md">
-                    {row.map((value, x) => {
-                      return (
-                        <>
-                          <button
-                            className={`${setColour(
-                              x,
-                              y
-                            )} md:w-40 md:h-32 sm:w-32 sm:h-24 w-14 h-16 rounded-xl md:m-2 m-1 shadow-md md:text-7xl sm:text-5xl`}
-                            onClick={() => handleTurn(x, y)}
-                          >
-                            {value}
-                          </button>
-                        </>
-                      );
-                    })}
-                  </div>
-                </>
+                <div key={y} className="row rounded-md">
+                  {row.map((value, x) => {
+                    return (
+                      <button
+                        key={x}
+                        className={`${setColour(
+                          x,
+                          y
+                        )} md:w-40 md:h-32 sm:w-32 sm:h-24 w-14 h-16 rounded-xl md:m-2 m-1 shadow-md md:text-7xl sm:text-5xl`}
+                        onClick={() => handleTurn(x, y)}
+                      >
+                        {value}
+                      </button>
+                    );
+                  })}
+                </div>
               );
             })}
           </div>

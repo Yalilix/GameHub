@@ -1,7 +1,7 @@
-export const ActionButton = ({ onClick, text }) => {
+export const ActionButton = ({ onClick, text, color }) => {
   return (
     <button
-      className="bg-black text-white hover:bg-white hover:border hover:border-black hover:text-black w-fit p-2 font-semibold rounded-2xl gap-2 md:text-2xl sm:text-lg text-xs shadow-2xl h-10"
+      className={`text-2xl font-bold text-center text-black bg-black rounded-full shadow-2xl size-10 ${color}`}
       onClick={onClick}
     >
       {text}

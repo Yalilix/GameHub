@@ -268,31 +268,35 @@ export const Tetro = () => {
         <Modal setFail={null} text={'Select Difficulty'}>
           <DifficultyPicker setFn={setDifficulty} />
           <button
-            className="bg-red-500 text-white hover:bg-red-700 hover:border w-24 font-semibold rounded-2xl gap-2 md:text-2xl sm:text-lg text-xs shadow-2xl h-10"
+            className="w-24 h-10 gap-2 text-xs font-semibold text-white bg-red-500 shadow-2xl hover:bg-red-700 hover:border rounded-2xl md:text-2xl sm:text-lg"
             onClick={() => setDifficulty('Easy')}
           >
             CLOSE
           </button>
         </Modal>
       )}
-      <div className="tetro-view flex flex-col items-center justify-around ml-6 pt-8 pl-1 pr-1 border border-black rounded-3xl w-1/3">
-        <span className="font-semibold sm:text-3xl text-2xl text-center">
+      <div className="flex flex-col items-center justify-around w-2/5 pt-8 pl-1 pr-1 ml-6 border border-black tetro-view rounded-3xl">
+        <span className="text-2xl font-semibold text-center sm:text-3xl">
           Get {difficulty === null ? '?' : getRules()} rows filled to win
         </span>
-        <span className="sm:text-xl text-base mt-12 text-center">
+        <span className="mt-12 text-base text-center sm:text-xl">
           Rows filled: {rowsFilled}
         </span>
         <button
-          className="bg-black text-white hover:bg-white hover:border hover:border-black hover:text-black w-fit p-2 font-semibold rounded-2xl gap-2 md:text-2xl sm:text-lg text-xs shadow-2xl"
+          className="h-8 gap-2 p-2 text-xs font-semibold text-white bg-black shadow-2xl sm:h-10 md:h-12 hover:bg-white hover:border hover:border-black hover:text-black w-fit rounded-2xl md:text-2xl sm:text-lg"
           onClick={() => setDifficulty(null)}
         >
-          Set Difficulty
+          Restart
         </button>
-        {isMobile && (
-          <div className="flex justify-center flex-wrap gap-1">
-            <ActionButton onClick={moveLeft} text="Left" />
-            <ActionButton onClick={moveRight} text="Right" />
-            <ActionButton onClick={moveDown} text="Down" />
+        {isMobile ? (
+          <div className="flex flex-wrap justify-center gap-1 p-2 border border-gray-500 rounded-full shadow-xl bg-deepNavy">
+            <ActionButton onClick={moveLeft} text="←" color={'bg-red-500'} />
+            <ActionButton onClick={moveRight} text="→" color={'bg-blue-500'} />
+            <ActionButton onClick={moveDown} text="↓" color={'bg-green-500'} />
+          </div>
+        ) : (
+          <div className="flex flex-wrap justify-center gap-1 ml-2 mr-2 text-lg text-center">
+            <span>Press LEFT, RIGHT or DOWN arrow keys to play</span>
           </div>
         )}
       </div>

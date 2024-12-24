@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import Page from '../../components/Page';
 import { shuffleArray } from '../../helper';
 import { ResetButton } from '../../components/ResetButton';
@@ -134,10 +134,9 @@ export const Slido = () => {
               <div key={x} className="flex">
                 {row.map((column, y) => {
                   return (
-                    <>
+                    <Fragment key={y}>
                       {column !== '' ? (
                         <img
-                          key={y}
                           src={column}
                           alt={`img-${x}`}
                           className="md:h-[150px] md:w-[150px] sm:h-32 sm:w-32 h-20 w-20 border border-black"
@@ -145,12 +144,11 @@ export const Slido = () => {
                         />
                       ) : (
                         <div
-                          key={y}
                           className="md:h-[150px] md:w-[150px] sm:h-32 sm:w-32 h-20 w-20 border border-black"
                           onClick={() => handleClick(x, y)}
                         ></div>
                       )}
-                    </>
+                    </Fragment>
                   );
                 })}
               </div>
