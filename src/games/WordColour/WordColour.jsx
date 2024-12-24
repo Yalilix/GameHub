@@ -4,6 +4,7 @@ import { StyledColorDiv } from '../../styles';
 import ColorName from 'color-name';
 import { DifficultyPicker } from '../../components/DifficultyPicker';
 import './style.css';
+import Modal from '../../components/Modal';
 
 let timeObj = null;
 
@@ -13,6 +14,7 @@ const WordColour = () => {
   const [correct, setCorrect] = useState(0);
   const [difficulty, setDifficulty] = useState('easy');
   const [boardSize, setBoardSize] = useState(4);
+  const [gameWon, setGameWon] = useState(false);
 
   const generateRandColor = () => {
     const strs = Object.keys(ColorName);
@@ -57,8 +59,7 @@ const WordColour = () => {
 
   useEffect(() => {
     if (correct === 3) {
-      alert('You have won');
-      window.location.reload();
+      setGameWon(true);
     }
   }, [correct]);
 
@@ -80,17 +81,25 @@ const WordColour = () => {
   return (
     <>
       <Page>
+        {gameWon && (
+          <Modal
+            setFail={() => {
+              setGameWon(false);
+            }}
+            text={'Game Won'}
+          />
+        )}
         <div className="flex flex-col">
           <DifficultyPicker setFn={setDifficulty} />
-          <div className="flex w-screen items-center">
-            <div className="bg-wc1 w-1/2 flex justify-center items-center md:text-custom-2rem sm:text-2xl text-xl md:h-96 sm:h-80 h-60 break-normal">
+          <div className="flex items-center w-screen">
+            <div className="flex items-center justify-center w-1/2 text-xl break-normal bg-wc1 md:text-custom-2rem sm:text-2xl md:h-96 sm:h-80 h-60">
               {randColor ? (
                 <span>{randColor}</span>
               ) : (
                 <span className="">Loading...</span>
               )}
             </div>
-            <div className="bg-wc2 w-1/2 md:h-96 sm:h-80 h-60 flex">
+            <div className="flex w-1/2 bg-wc2 md:h-96 sm:h-80 h-60">
               <div className="board" data-size={boardSize}>
                 {colors.map((e, index) => (
                   <StyledColorDiv
